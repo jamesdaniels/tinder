@@ -41,8 +41,13 @@ module Tinder
       @uri = URI.parse("#{@options[:ssl] ? 'https' : 'http' }://#{subdomain}.#{HOST}")
       @token = options[:token]
 
-      connection.basic_auth token, 'X'
-      raw_connection.basic_auth token, 'X'
+      if options[:oauth]
+        connection.headers[:authorization] = "Bearer #{token}"
+        raw_connection.headers[:authorization] = "Bearer #{token}"
+      else
+        connection.basic_auth token, 'X'
+        raw_connection.basic_auth token, 'X'
+      end
     end
 
     def basic_auth_settings
