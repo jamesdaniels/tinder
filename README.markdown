@@ -7,6 +7,8 @@ Tinder is a library for interfacing with Campfire, the chat application from 37S
     campfire = Tinder::Campfire.new 'mysubdomain', :token => '546884b3d8fee4d80665g561caf7h9f3ea7b999e'
     # or you can still use username/password and Tinder will look up your token
     # campfire = Tinder::Campfire.new 'mysubdomain', :username => 'user', :password => 'pass'
+    # or use an token issued from an OAuth 2 grant
+    # campfire = Tinder::Campfire.new 'mysubdomain', :token => '...', :oauth => true
 
     room = campfire.rooms.first
     room.rename 'New Room Names'
